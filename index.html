@@ -117,7 +117,7 @@
 <body>
 <div class="wrap">
   <header>
-    <span class="badge">v1 · one config → the whole store</span>
+    <span class="badge">v1.1 · your shots, in every frame</span>
     <h1>Ship every App&nbsp;Store<br/><em>screenshot</em> from one file.</h1>
     <p class="sub">Edit one JSON config. Get pixel-exact PNGs for iPhone 6.7", 6.5" and iPad 12.9" — re-runnable every release. No design tool, no bezel licensing, no fiddling with canvas sizes. Renders entirely in your browser — nothing is uploaded.</p>
   </header>
@@ -131,8 +131,8 @@
     <div class="card">
       <h2>1 · Your config</h2>
       <div class="filebox" id="filebox">
-        <input type="file" id="appimg" accept="image/png,image/jpeg" style="display:none" />
-        <span id="filelabel">Drop your app screenshot (optional in v1) — the panel is a placeholder for now.</span>
+        <input type="file" id="appimg" accept="image/png,image/jpeg" multiple style="display:none" />
+        <span id="filelabel">Drop your app screenshots (one per frame, in order) — they render straight into the device panel. Optional: skip to see the layout.</span>
       </div>
       <label for="cfg">config.json — app name, theme colors, and one entry per store frame</label>
       <textarea id="cfg" spellcheck="false"></textarea>
@@ -231,33 +231,44 @@
   }
 
   // ---- VNode builder — kept in lockstep with render.ts / verify-client.mjs. ----
-  function buildElement(cfg, frame, device, watermark) {
+  // `image` (optional) is a data-URL of the user's real app screenshot; when
+  // present it is composited into the device panel instead of the placeholder.
+  function buildElement(cfg, frame, device, watermark, image) {
     const pad = Math.round(device.width * 0.09);
     const headlineSize = Math.round(device.width * 0.088);
     const captionSize = Math.round(device.width * 0.036);
-    const children = [
+    const radius = Math.round(device.width * 0.06);
+    // Deterministic panel box so satori can size a composited <img> exactly.
+    const innerH = device.height - pad * 2;
+    const topBlockH = Math.round(innerH * 0.26);
+    const panelW = Math.round(device.width * 0.82);
+    const panelH = innerH - topBlockH - pad;
+    const topBlock = { type: 'div', props: { style: { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', height: topBlockH }, children: [
       { type: 'div', props: { style: { fontSize: headlineSize, fontWeight: 700, lineHeight: 1.05, textAlign: 'center', whiteSpace: 'pre-wrap', letterSpacing: -1 }, children: frame.headline } },
       { type: 'div', props: { style: { marginTop: Math.round(pad * 0.35), fontSize: captionSize, fontWeight: 400, textAlign: 'center', opacity: 0.92 }, children: frame.caption } },
-      { type: 'div', props: { style: { display: 'flex', marginTop: pad, flex: 1, width: '82%', borderRadius: Math.round(device.width * 0.06), backgroundColor: cfg.theme.panel, border: '2px solid rgba(255,255,255,0.18)', alignItems: 'flex-end', justifyContent: 'center', padding: Math.round(pad * 0.5) }, children: { type: 'div', props: { style: { fontSize: captionSize, opacity: 0.5, textAlign: 'center' }, children: '[ your app screenshot ]' } } } },
-    ];
+    ] } };
+    const panel = image
+      ? { type: 'img', props: { src: image, width: panelW, height: panelH, style: { width: panelW, height: panelH, marginTop: pad, borderRadius: radius, objectFit: 'cover', border: '2px solid rgba(255,255,255,0.18)' } } }
+      : { type: 'div', props: { style: { display: 'flex', marginTop: pad, width: panelW, height: panelH, borderRadius: radius, backgroundColor: cfg.theme.panel, border: '2px solid rgba(255,255,255,0.18)', alignItems: 'center', justifyContent: 'center' }, children: { type: 'div', props: { style: { fontSize: captionSize, opacity: 0.5, textAlign: 'center' }, children: '[ your app screenshot ]' } } } };
+    const children = [topBlock, panel];
     if (watermark) {
       children.push({ type: 'div', props: { style: { position: 'absolute', bottom: Math.round(pad * 0.4), fontSize: Math.round(captionSize * 0.7), opacity: 0.55, letterSpacing: 1 }, children: 'made with ShipShots' } });
     }
     return { type: 'div', props: { style: { position: 'relative', width: device.width, height: device.height, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: pad, fontFamily: 'Geist', color: cfg.theme.text, backgroundImage: `linear-gradient(160deg, ${cfg.theme.bgFrom}, ${cfg.theme.bgTo})` }, children } };
   }
 
-  async function renderPng(cfg, frame, device, watermark) {
-    const svg = await satori(buildElement(cfg, frame, device, watermark), { width: device.width, height: device.height, fonts: FONTS });
+  async function renderPng(cfg, frame, device, watermark, image) {
+    const svg = await satori(buildElement(cfg, frame, device, watermark, image), { width: device.width, height: device.height, fonts: FONTS });
     return new Resvg(svg, { fitTo: { mode: 'width', value: device.width } }).render().asPng();
   }
 
-  async function renderMatrix(cfg, watermark, onProgress) {
+  async function renderMatrix(cfg, watermark, images, onProgress) {
     const files = {};
     let done = 0;
     const total = DEVICES.length * cfg.frames.length;
     for (const device of DEVICES) {
       for (let i = 0; i < cfg.frames.length; i++) {
-        files[`${device.id}/frame-${i + 1}.png`] = await renderPng(cfg, cfg.frames[i], device, watermark);
+        files[`${device.id}/frame-${i + 1}.png`] = await renderPng(cfg, cfg.frames[i], device, watermark, images[i]);
         done++;
         if (onProgress) onProgress(done, total);
         await new Promise((r) => setTimeout(r, 0)); // yield so the UI can paint
@@ -274,9 +285,23 @@
     try { localStorage.setItem('wtp', String((+localStorage.getItem('wtp') || 0) + 1)); } catch {}
   }
 
-  document.getElementById('appimg').addEventListener('change', (e) => {
-    const f = e.target.files[0];
-    if (f) document.getElementById('filelabel').textContent = 'Loaded: ' + f.name + ' (panel placeholder in v1)';
+  // Your real app screenshots, read as data-URLs and mapped to frames in order.
+  let appImages = [];
+  const fileToDataURL = (f) => new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result);
+    r.onerror = rej;
+    r.readAsDataURL(f);
+  });
+  document.getElementById('appimg').addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files || []);
+    const label = document.getElementById('filelabel');
+    if (!files.length) return;
+    label.textContent = 'Reading ' + files.length + ' image(s)…';
+    try {
+      appImages = await Promise.all(files.map(fileToDataURL));
+      label.textContent = appImages.length + ' screenshot(s) loaded → mapped to frames 1–' + appImages.length + ' in order. Re-select to change.';
+    } catch { label.textContent = 'Could not read those files — try PNG or JPEG.'; }
   });
   document.getElementById('filebox').addEventListener('click', () => document.getElementById('appimg').click());
 
@@ -297,7 +322,7 @@
     out.innerHTML = '<span class="status">Warming render engine…</span>';
     try {
       await ensureReady();
-      const files = await renderMatrix(config, true, (d, t) => {
+      const files = await renderMatrix(config, true, appImages, (d, t) => {
         out.innerHTML = '<span class="status">Rendering the matrix… ' + d + '/' + t + ' screenshots</span>';
       });
       const zip = zipSync(files, { level: 6 });
