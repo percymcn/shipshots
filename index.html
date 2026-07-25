@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ShipShots — App Store screenshots from one config</title>
+<link rel="icon" href="data:," />
+<meta name="description" content="Edit one JSON config, get pixel-exact App Store screenshots for iPhone 6.7&quot;, 6.5&quot; and iPad 12.9&quot;. Renders entirely in your browser — nothing uploaded." />
+<link rel="preconnect" href="https://fonts.bunny.net" />
+<link href="https://fonts.bunny.net/css?family=bricolage-grotesque:700,800|geist:400,500,600" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0a0b0d;
+    --panel: #111318;
+    --line: #23262e;
+    --fg: #e8eaed;
+    --muted: #8b909b;
+    --lime: #c6f24e;
+    --lime-dim: #8fae2e;
+    --danger: #ff6b5e;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--ink);
+    color: var(--fg);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    background-position: -1px -1px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px 96px; }
+  header { padding: 64px 0 40px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--lime); border: 1px solid var(--lime-dim);
+    padding: 5px 12px; border-radius: 999px; margin-bottom: 26px;
+  }
+  .badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+  h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: clamp(42px, 7vw, 78px);
+    line-height: 0.98; letter-spacing: -2px; margin: 0 0 18px;
+  }
+  h1 em { font-style: normal; color: var(--lime); }
+  .sub { color: var(--muted); font-size: 18px; max-width: 620px; margin: 0; }
+  .grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; margin-top: 48px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: linear-gradient(180deg, #14161c, var(--panel));
+    border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+  }
+  .card h2 { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 15px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 14px 0 6px; }
+  textarea, input[type=text] {
+    width: 100%; background: #0c0e12; border: 1px solid var(--line); color: var(--fg);
+    border-radius: 10px; padding: 12px; font-family: 'Geist'; font-size: 13px; resize: vertical;
+  }
+  textarea { min-height: 220px; font-family: ui-monospace, 'SF Mono', monospace; line-height: 1.5; }
+  textarea:focus, input:focus { outline: none; border-color: var(--lime-dim); }
+  .filebox { border: 1px dashed var(--line); border-radius: 10px; padding: 18px; text-align: center; color: var(--muted); font-size: 13px; }
+  .row { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+  .toggle { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--fg); cursor: pointer; user-select: none; }
+  .toggle input { accent-color: var(--lime); width: 16px; height: 16px; }
+  button.gen {
+    width: 100%; margin-top: 22px; background: var(--lime); color: #0a0b0d;
+    border: none; border-radius: 12px; padding: 15px; font-family: 'Bricolage Grotesque';
+    font-weight: 700; font-size: 16px; letter-spacing: 0.3px; cursor: pointer;
+    transition: transform .08s ease, box-shadow .2s ease; box-shadow: 0 0 0 rgba(198,242,78,0);
+  }
+  button.gen:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(198,242,78,0.22); }
+  button.gen:disabled { opacity: .5; cursor: wait; }
+  .matrix { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .chip { font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 8px; padding: 5px 10px; }
+  .chip b { color: var(--fg); font-weight: 600; }
+  .out { margin-top: 20px; min-height: 24px; font-size: 14px; }
+  .out a { color: var(--lime); font-weight: 600; }
+  .status { color: var(--muted); font-size: 13px; }
+  .paywall {
+    margin-top: 14px; border: 1px solid var(--lime-dim); background: rgba(198,242,78,0.06);
+    border-radius: 12px; padding: 16px; display: none;
+  }
+  .paywall.show { display: block; animation: rise .25s ease; }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .paywall h3 { margin: 0 0 6px; font-family: 'Bricolage Grotesque'; font-size: 18px; }
+  .paywall .price { color: var(--lime); font-weight: 700; }
+  .paywall button { margin-top: 12px; background: transparent; color: var(--lime); border: 1px solid var(--lime); border-radius: 10px; padding: 10px 16px; font-weight: 600; cursor: pointer; }
+  footer { margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  code.k { color: var(--lime); font-family: ui-monospace, monospace; }
+  .priv { color: var(--muted); font-size: 12px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="badge">v1 · one config → the whole store</span>
+    <h1>Ship every App&nbsp;Store<br/><em>screenshot</em> from one file.</h1>
+    <p class="sub">Edit one JSON config. Get pixel-exact PNGs for iPhone 6.7", 6.5" and iPad 12.9" — re-runnable every release. No design tool, no bezel licensing, no fiddling with canvas sizes. Renders entirely in your browser — nothing is uploaded.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>1 · Your config</h2>
+      <div class="filebox" id="filebox">
+        <input type="file" id="appimg" accept="image/png,image/jpeg" style="display:none" />
+        <span id="filelabel">Drop your app screenshot (optional in v1) — the panel is a placeholder for now.</span>
+      </div>
+      <label for="cfg">config.json — app name, theme colors, and one entry per store frame</label>
+      <textarea id="cfg" spellcheck="false"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>2 · Generate</h2>
+      <label>Device matrix (App Store Connect required sizes)</label>
+      <div class="matrix">
+        <span class="chip"><b>iPhone 6.7"</b> 1290×2796</span>
+        <span class="chip"><b>iPhone 6.5"</b> 1242×2688</span>
+        <span class="chip"><b>iPad 12.9"</b> 2048×2732</span>
+      </div>
+      <div class="row">
+        <label class="toggle">
+          <input type="checkbox" id="nowm" /> Remove "made with ShipShots" watermark
+        </label>
+      </div>
+      <button class="gen" id="gen">Generate screenshots →</button>
+      <div class="out" id="out"><span class="status">A .zip of the full matrix downloads here.</span></div>
+
+      <div class="paywall" id="paywall">
+        <h3>Ship Pack — <span class="price">$12/mo</span> or $9 one-time</h3>
+        <div class="status">Free exports carry a small watermark. Ship Pack removes it and unlocks export-all at full resolution. Undercuts the $19/mo incumbents.</div>
+        <button id="wantpaid">I want the watermark gone →</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>ShipShots · config-driven store screenshots · <code class="k">renders in-browser</code></span>
+    <span id="health">·</span>
+  </footer>
+</div>
+
+<script type="module">
+  import satori from 'https://esm.sh/satori@0.12.2';
+  import { Resvg, initWasm } from 'https://esm.sh/@resvg/resvg-wasm@2.6.2';
+  import { zipSync } from 'https://esm.sh/fflate@0.8.3';
+
+  const WASM_URL = 'https://unpkg.com/@resvg/resvg-wasm@2.6.2/index_bg.wasm';
+  const FONT_400 = 'https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.ttf';
+  const FONT_700 = 'https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-700-normal.ttf';
+
+  const DEVICES = [
+    { id: 'iphone-6.7', label: 'iPhone 6.7"', width: 1290, height: 2796 },
+    { id: 'iphone-6.5', label: 'iPhone 6.5"', width: 1242, height: 2688 },
+    { id: 'ipad-12.9',  label: 'iPad 12.9"',  width: 2048, height: 2732 },
+  ];
+
+  const DEFAULT = {
+    app: "Tempo — Focus Timer",
+    theme: { bgFrom: "#4f46e5", bgTo: "#0ea5e9", text: "#ffffff", panel: "#0b1020" },
+    frames: [
+      { headline: "Deep work,\non a timer.", caption: "Block distractions and ship." },
+      { headline: "See every\nfocused hour.", caption: "Weekly stats that actually motivate." },
+      { headline: "Yours on\nevery device.", caption: "Sync across iPhone, iPad & Mac." }
+    ]
+  };
+
+  const cfgEl = document.getElementById('cfg');
+  cfgEl.value = JSON.stringify(DEFAULT, null, 2);
+  const out = document.getElementById('out');
+  const paywall = document.getElementById('paywall');
+  const genBtn = document.getElementById('gen');
+  const healthEl = document.getElementById('health');
+
+  // ---- Engine bootstrap: init resvg wasm + load fonts once. ----
+  let FONTS = null;
+  let ready = false;
+  async function ensureReady() {
+    if (ready) return;
+    await initWasm(fetch(WASM_URL));
+    const [r, b] = await Promise.all([
+      fetch(FONT_400).then((x) => x.arrayBuffer()),
+      fetch(FONT_700).then((x) => x.arrayBuffer()),
+    ]);
+    FONTS = [
+      { name: 'Geist', data: r, weight: 400, style: 'normal' },
+      { name: 'Geist', data: b, weight: 700, style: 'normal' },
+    ];
+    ready = true;
+  }
+
+  // ---- Config validation (mirrors the old Worker's validateConfig). ----
+  function validateConfig(input) {
+    if (!input || typeof input !== 'object') throw new Error('config must be an object');
+    const frames = Array.isArray(input.frames) ? input.frames : [];
+    if (frames.length === 0) throw new Error('config.frames must have at least one frame');
+    if (frames.length > 12) throw new Error('v1 caps at 12 frames per run');
+    return {
+      app: String(input.app ?? DEFAULT.app),
+      theme: { ...DEFAULT.theme, ...(input.theme ?? {}) },
+      frames: frames.map((f) => ({ headline: String(f.headline ?? ''), caption: String(f.caption ?? '') })),
+    };
+  }
+
+  // ---- VNode builder — kept in lockstep with render.ts / verify-client.mjs. ----
+  function buildElement(cfg, frame, device, watermark) {
+    const pad = Math.round(device.width * 0.09);
+    const headlineSize = Math.round(device.width * 0.088);
+    const captionSize = Math.round(device.width * 0.036);
+    const children = [
+      { type: 'div', props: { style: { fontSize: headlineSize, fontWeight: 700, lineHeight: 1.05, textAlign: 'center', whiteSpace: 'pre-wrap', letterSpacing: -1 }, children: frame.headline } },
+      { type: 'div', props: { style: { marginTop: Math.round(pad * 0.35), fontSize: captionSize, fontWeight: 400, textAlign: 'center', opacity: 0.92 }, children: frame.caption } },
+      { type: 'div', props: { style: { display: 'flex', marginTop: pad, flex: 1, width: '82%', borderRadius: Math.round(device.width * 0.06), backgroundColor: cfg.theme.panel, border: '2px solid rgba(255,255,255,0.18)', alignItems: 'flex-end', justifyContent: 'center', padding: Math.round(pad * 0.5) }, children: { type: 'div', props: { style: { fontSize: captionSize, opacity: 0.5, textAlign: 'center' }, children: '[ your app screenshot ]' } } } },
+    ];
+    if (watermark) {
+      children.push({ type: 'div', props: { style: { position: 'absolute', bottom: Math.round(pad * 0.4), fontSize: Math.round(captionSize * 0.7), opacity: 0.55, letterSpacing: 1 }, children: 'made with ShipShots' } });
+    }
+    return { type: 'div', props: { style: { position: 'relative', width: device.width, height: device.height, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: pad, fontFamily: 'Geist', color: cfg.theme.text, backgroundImage: `linear-gradient(160deg, ${cfg.theme.bgFrom}, ${cfg.theme.bgTo})` }, children } };
+  }
+
+  async function renderPng(cfg, frame, device, watermark) {
+    const svg = await satori(buildElement(cfg, frame, device, watermark), { width: device.width, height: device.height, fonts: FONTS });
+    return new Resvg(svg, { fitTo: { mode: 'width', value: device.width } }).render().asPng();
+  }
+
+  async function renderMatrix(cfg, watermark, onProgress) {
+    const files = {};
+    let done = 0;
+    const total = DEVICES.length * cfg.frames.length;
+    for (const device of DEVICES) {
+      for (let i = 0; i < cfg.frames.length; i++) {
+        files[`${device.id}/frame-${i + 1}.png`] = await renderPng(cfg, cfg.frames[i], device, watermark);
+        done++;
+        if (onProgress) onProgress(done, total);
+        await new Promise((r) => setTimeout(r, 0)); // yield so the UI can paint
+      }
+    }
+    return files;
+  }
+
+  // ---- WTP instrument: hosted counter (readable back via curl) + local fallback. ----
+  function fireWtp(source) {
+    const key = ('src_' + source).replace(/[^a-z0-9_]/gi, '');
+    fetch(`https://api.counterapi.dev/v1/shipshots-pharma6/${key}/up`, { mode: 'cors' }).catch(() => {});
+    fetch('https://api.counterapi.dev/v1/shipshots-pharma6/wtp_total/up', { mode: 'cors' }).catch(() => {});
+    try { localStorage.setItem('wtp', String((+localStorage.getItem('wtp') || 0) + 1)); } catch {}
+  }
+
+  document.getElementById('appimg').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f) document.getElementById('filelabel').textContent = 'Loaded: ' + f.name + ' (panel placeholder in v1)';
+  });
+  document.getElementById('filebox').addEventListener('click', () => document.getElementById('appimg').click());
+
+  document.getElementById('nowm').addEventListener('change', (e) => {
+    if (e.target.checked) { paywall.classList.add('show'); fireWtp('toggle'); e.target.checked = false; }
+    else paywall.classList.remove('show');
+  });
+  document.getElementById('wantpaid').addEventListener('click', () => {
+    fireWtp('cta');
+    document.getElementById('wantpaid').textContent = 'Noted — checkout ships next. Thanks for the signal ✓';
+  });
+
+  genBtn.addEventListener('click', async () => {
+    let config;
+    try { config = validateConfig(JSON.parse(cfgEl.value)); }
+    catch (err) { out.innerHTML = '<span class="status" style="color:var(--danger)">Config isn’t valid: ' + err.message + '</span>'; return; }
+    genBtn.disabled = true;
+    out.innerHTML = '<span class="status">Warming render engine…</span>';
+    try {
+      await ensureReady();
+      const files = await renderMatrix(config, true, (d, t) => {
+        out.innerHTML = '<span class="status">Rendering the matrix… ' + d + '/' + t + ' screenshots</span>';
+      });
+      const zip = zipSync(files, { level: 6 });
+      const count = Object.keys(files).length;
+      const kb = Math.round(zip.length / 1024);
+      const blob = new Blob([zip], { type: 'application/zip' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'shipshots.zip'; document.body.appendChild(a); a.click(); a.remove();
+      out.innerHTML = '<a href="' + url + '" download="shipshots.zip">⬇ Download ' + count + ' screenshots (' + kb + ' KB zip)</a>' +
+        '<div class="status" style="margin-top:6px">Free export — watermarked. <a href="#" id="wm2" style="color:var(--lime)">Remove watermark</a></div>';
+      document.getElementById('wm2').addEventListener('click', (e) => { e.preventDefault(); paywall.classList.add('show'); fireWtp('post_export'); });
+    } catch (err) {
+      out.innerHTML = '<span class="status" style="color:var(--danger)">Render failed: ' + (err && err.message ? err.message : err) + '</span>';
+    } finally { genBtn.disabled = false; }
+  });
+
+  // Warm the engine in the background so the first click is fast.
+  ensureReady().then(() => { healthEl.textContent = 'render engine: ready (in-browser)'; })
+    .catch(() => { healthEl.textContent = 'render engine: will load on first run'; });
+</script>
+</body>
+</html>
