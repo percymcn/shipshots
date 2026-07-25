@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How to Make App Store Screenshots (2026) — 5-Step Guide | ShipShots</title>
+<meta name="description" content="A step-by-step 2026 guide to making App Store screenshots that pass review and convert: the two required sizes, capturing frames, adding device bezels and captions, exporting a flattened PNG, and uploading to App Store Connect." />
+<link rel="canonical" href="https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/" />
+<meta property="og:title" content="How to Make App Store Screenshots (2026) — 5-Step Guide" />
+<meta property="og:description" content="From the two required sizes to a review-ready upload: the exact 5 steps to make App Store screenshots in 2026, plus the format mistakes that get uploads rejected." />
+<meta property="og:image" content="https://percymcn.github.io/shipshots/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="How to Make App Store Screenshots (2026) — 5-Step Guide" />
+<meta name="twitter:description" content="The exact 5 steps to make App Store screenshots that pass review and convert, plus the format rules Apple rejects uploads over." />
+<meta name="twitter:image" content="https://percymcn.github.io/shipshots/og.png" />
+
+<link rel="icon" href="data:," />
+<link rel="preconnect" href="https://fonts.bunny.net" />
+<link href="https://fonts.bunny.net/css?family=bricolage-grotesque:700,800|geist:400,500,600" rel="stylesheet" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HowTo",
+      "name": "How to make App Store screenshots",
+      "description": "Make App Store Connect screenshots that pass review and convert in five steps, from the two required base sizes to a flattened PNG upload.",
+      "image": "https://percymcn.github.io/shipshots/og.png",
+      "totalTime": "PT20M",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Design at the two required sizes", "text": "Build your artwork at the iPhone 6.9-inch (1320×2868 px) and iPad 13-inch (2064×2752 px) base sizes. App Store Connect scales those to every smaller listing.", "url": "https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/#step-1" },
+        { "@type": "HowToStep", "position": 2, "name": "Capture your app frames", "text": "Take clean screenshots from the iOS Simulator (Cmd+S) or a device, or design mockups in Figma. Hide personal data and clutter in the status bar.", "url": "https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/#step-2" },
+        { "@type": "HowToStep", "position": 3, "name": "Add device frames and captions", "text": "Place each frame in a device bezel and add a short benefit caption. Framed, captioned screenshots consistently outconvert raw captures.", "url": "https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/#step-3" },
+        { "@type": "HowToStep", "position": 4, "name": "Export a flattened PNG", "text": "Export PNG or JPEG in RGB (sRGB or Display P3), flattened with no alpha channel or transparency, at the exact pixel dimensions.", "url": "https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/#step-4" },
+        { "@type": "HowToStep", "position": 5, "name": "Upload to App Store Connect", "text": "In App Store Connect, add up to 10 screenshots per display size in the order you want them shown, starting with the 6.9-inch iPhone set.", "url": "https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/#step-5" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "ShipShots", "item": "https://percymcn.github.io/shipshots/" },
+        { "@type": "ListItem", "position": 2, "name": "How to make App Store screenshots", "item": "https://percymcn.github.io/shipshots/how-to-make-app-store-screenshots/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How many screenshots can you upload to the App Store?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Up to 10 screenshots per display size. The first two or three are the most important because they show in the search results carousel before anyone taps through to your product page." }
+        },
+        {
+          "@type": "Question",
+          "name": "What sizes do you need to make App Store screenshots in 2026?",
+          "acceptedAnswer": { "@type": "Answer", "text": "As of 2025 you only need two: the iPhone 6.9-inch at 1320×2868 px and the iPad 13-inch at 2064×2752 px (portrait). App Store Connect scales those down to fill smaller device listings automatically." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do App Store screenshots need a device frame?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, a device frame is optional. Apple accepts raw full-bleed screenshots. But framed screenshots with a short benefit caption tend to convert better, so most published apps use them." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does App Store Connect reject my screenshot upload?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The most common causes are the wrong pixel dimensions, an alpha channel or transparency (screenshots must be flattened), an unsupported file type such as HEIC, or a color profile that is not RGB. Export a flattened PNG at the exact size to avoid all four." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you put marketing text on App Store screenshots?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Adding a short headline or caption over each screenshot is allowed and encouraged. Keep the text large and legible at thumbnail size, since most impressions happen in a small carousel." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --ink: #0a0b0d;
+    --panel: #111318;
+    --line: #23262e;
+    --fg: #e8eaed;
+    --muted: #8b909b;
+    --lime: #c6f24e;
+    --lime-dim: #8fae2e;
+    --amber: #e8b84b;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--ink);
+    color: var(--fg);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    background-position: -1px -1px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px 100px; }
+  a { color: var(--lime); }
+  :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+
+  /* --- top bar --- */
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .brand { font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: var(--fg); text-decoration: none; }
+  .brand span { color: var(--lime); }
+  .topcta { font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid var(--lime-dim); color: var(--lime); padding: 8px 14px; border-radius: 999px; white-space: nowrap; transition: background .15s ease; }
+  .topcta:hover { background: rgba(198,242,78,0.08); }
+
+  /* --- hero --- */
+  header.hero { padding: 66px 0 30px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--lime); border: 1px solid var(--lime-dim); padding: 5px 12px; border-radius: 999px; margin-bottom: 26px; }
+  .eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+  h1 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 6.4vw, 68px); line-height: 1.0; letter-spacing: -2px; margin: 0 0 20px; }
+  h1 em { font-style: normal; color: var(--lime); }
+  .lede { color: var(--muted); font-size: 18px; max-width: 680px; margin: 0; }
+  .lede b { color: var(--fg); font-weight: 600; }
+
+  /* --- section headings --- */
+  h2 { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 26px; letter-spacing: -0.6px; margin: 64px 0 6px; }
+  .h2note { color: var(--muted); font-size: 15px; margin: 0 0 22px; }
+
+  /* --- steps --- */
+  .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 46px; }
+  .step { position: relative; background: linear-gradient(180deg, #14161c, var(--panel)); border: 1px solid var(--line); border-radius: 18px; padding: 26px 28px 26px 84px; }
+  .step.hero-step { border-color: var(--lime-dim); box-shadow: 0 0 40px rgba(198,242,78,0.05); }
+  .stepnum { position: absolute; left: 26px; top: 26px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 11px; background: #0c0e12; border: 1.5px solid var(--line); font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 18px; color: var(--lime); }
+  .step.hero-step .stepnum { border-color: var(--lime-dim); }
+  .step h3 { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 20px; letter-spacing: -0.3px; margin: 0 0 8px; }
+  .step p { margin: 0; color: var(--muted); font-size: 15px; }
+  .step p b { color: var(--fg); font-weight: 600; }
+  .step .mono { font-family: ui-monospace, 'SF Mono', monospace; color: var(--lime); font-size: 14px; }
+  @media (max-width: 640px) { .step { padding: 72px 22px 22px; } .stepnum { top: 22px; left: 22px; } }
+
+  /* --- rules grid --- */
+  .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px; }
+  @media (max-width: 720px) { .rules { grid-template-columns: 1fr; } }
+  .rule { border: 1px solid var(--line); border-radius: 14px; padding: 20px; background: var(--panel); }
+  .rule h3 { font-family: 'Bricolage Grotesque'; font-size: 15px; margin: 0 0 6px; }
+  .rule p { margin: 0; color: var(--muted); font-size: 14px; }
+  .rule .val { color: var(--lime); font-family: ui-monospace, monospace; }
+
+  /* --- callout --- */
+  .callout { margin-top: 26px; border: 1px solid var(--line); border-left: 3px solid var(--amber); background: rgba(232,184,75,0.05); border-radius: 12px; padding: 20px 22px; }
+  .callout h3 { font-family: 'Bricolage Grotesque'; font-size: 16px; margin: 0 0 6px; color: var(--amber); }
+  .callout p { margin: 0; color: var(--fg); opacity: 0.92; font-size: 15px; }
+  .callout a { font-weight: 600; }
+
+  /* --- FAQ --- */
+  .faq details { border: 1px solid var(--line); border-radius: 12px; padding: 4px 20px; margin-bottom: 12px; background: var(--panel); }
+  .faq summary { cursor: pointer; padding: 15px 0; font-weight: 600; font-family: 'Bricolage Grotesque'; font-size: 16px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; color: var(--lime); font-size: 22px; line-height: 1; }
+  .faq details[open] summary::after { content: '–'; }
+  .faq details p { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+
+  /* --- CTA band --- */
+  .ctaband { margin-top: 66px; border: 1px solid var(--lime-dim); border-radius: 20px; padding: 40px 34px; text-align: center; background: linear-gradient(180deg, rgba(198,242,78,0.05), rgba(198,242,78,0.02)); }
+  .ctaband h2 { margin: 0 0 10px; font-size: clamp(24px, 4vw, 34px); }
+  .ctaband p { color: var(--muted); max-width: 520px; margin: 0 auto 22px; font-size: 16px; }
+  .ctabtn { display: inline-block; background: var(--lime); color: var(--ink); text-decoration: none; font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 17px; padding: 15px 28px; border-radius: 13px; transition: transform .08s ease, box-shadow .2s ease; }
+  .ctabtn:hover { transform: translateY(-1px); box-shadow: 0 10px 34px rgba(198,242,78,0.24); }
+
+  footer { margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { font-weight: 600; }
+
+  .reveal { opacity: 0; transform: translateY(10px); animation: rise .5s ease forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { animation: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topbar">
+    <a class="brand" href="../">Ship<span>Shots</span></a>
+    <a class="topcta" href="../">Open the generator →</a>
+  </nav>
+
+  <header class="hero">
+    <span class="eyebrow">Guide · updated Jul 2026</span>
+    <h1>How to make<br/><em>App Store screenshots.</em></h1>
+    <p class="lede">A publish-ready App Store screenshot set is five steps: design at the <b>two required sizes</b>, capture clean frames, add a device bezel and caption, export a <b>flattened PNG</b>, and upload in order. Here is exactly how — plus the format mistakes that get uploads rejected.</p>
+  </header>
+
+  <h2>The 5 steps</h2>
+  <p class="h2note">Twenty minutes end to end once your artwork is ready. Each step maps to a real App Store Connect requirement.</p>
+
+  <div class="steps">
+    <div class="step hero-step reveal" id="step-1">
+      <div class="stepnum">1</div>
+      <h3>Design at the two required sizes</h3>
+      <p>As of 2025 you only need two base sizes: the <b>iPhone 6.9"</b> at <span class="mono">1320×2868</span> and the <b>iPad 13"</b> at <span class="mono">2064×2752</span> (portrait). App Store Connect scales those down to every smaller listing, so start there. The full per-device table lives on <a href="../app-store-screenshot-sizes/">App Store screenshot sizes</a>.</p>
+    </div>
+    <div class="step reveal" id="step-2" style="animation-delay:.05s">
+      <div class="stepnum">2</div>
+      <h3>Capture your app frames</h3>
+      <p>Pull clean shots from the <b>iOS Simulator</b> (<span class="mono">Cmd+S</span> saves at native resolution) or a real device, or build mockups in Figma. Set a full status bar, hide personal data, and pick the screens that show your app's core value first.</p>
+    </div>
+    <div class="step reveal" id="step-3" style="animation-delay:.1s">
+      <div class="stepnum">3</div>
+      <h3>Add device frames and captions</h3>
+      <p>Drop each frame into a device bezel and add a short <b>benefit caption</b> above it. Frames aren't required, but framed, captioned screenshots consistently outconvert raw captures — most impressions happen in a small search carousel where a headline does the selling.</p>
+    </div>
+    <div class="step reveal" id="step-4" style="animation-delay:.15s">
+      <div class="stepnum">4</div>
+      <h3>Export a flattened PNG</h3>
+      <p>Export <b>PNG or JPEG</b> in RGB (sRGB or Display P3), <b>flattened with no alpha</b> channel, at the exact pixel dimensions. Transparency, HEIC, and off-size exports are the top three reasons App Store Connect rejects a screenshot.</p>
+    </div>
+    <div class="step reveal" id="step-5" style="animation-delay:.2s">
+      <div class="stepnum">5</div>
+      <h3>Upload to App Store Connect</h3>
+      <p>In App Store Connect, add up to <b>10 screenshots per display size</b> in the order you want them shown, starting with the 6.9" iPhone set. Reorder by dragging — the first two or three carry the click, so lead with your strongest frame.</p>
+    </div>
+  </div>
+
+  <h2>Format rules Apple enforces</h2>
+  <p class="h2note">Get any of these wrong and the upload bounces before it reaches review.</p>
+  <div class="rules">
+    <div class="rule"><h3>File type</h3><p><span class="val">PNG</span> or <span class="val">JPEG</span>. No HEIC, no PDF.</p></div>
+    <div class="rule"><h3>Color</h3><p>RGB, <span class="val">sRGB</span> or Display P3. Flattened — <span class="val">no alpha</span> / transparency.</p></div>
+    <div class="rule"><h3>Dimensions</h3><p>Exact pixels: iPhone <span class="val">1320×2868</span>, iPad <span class="val">2064×2752</span>.</p></div>
+  </div>
+
+  <div class="callout">
+    <h3>Skip steps 1–4 entirely</h3>
+    <p>ShipShots takes one config and renders the pixel-exact matrix — 6.9", 6.7", 6.5", 13" and 12.9" — flattened and ready to upload, 100% in your browser. See the exact targets on <a href="../app-store-screenshot-sizes/">App Store screenshot sizes</a>, then <a href="../">open the generator</a>.</p>
+  </div>
+
+  <h2>FAQ</h2>
+  <div class="faq">
+    <details>
+      <summary>How many screenshots can you upload?</summary>
+      <p>Up to 10 per display size. The first two or three matter most — they appear in the search carousel before anyone taps through to your product page.</p>
+    </details>
+    <details>
+      <summary>What sizes do you need in 2026?</summary>
+      <p>Just two base sizes: iPhone 6.9" at 1320×2868 px and iPad 13" at 2064×2752 px (portrait). App Store Connect scales them down to smaller devices automatically. Full table on <a href="../app-store-screenshot-sizes/">App Store screenshot sizes</a>.</p>
+    </details>
+    <details>
+      <summary>Do screenshots need a device frame?</summary>
+      <p>No — a frame is optional and Apple accepts raw full-bleed captures. But framed screenshots with a short caption tend to convert better, so most published apps use them.</p>
+    </details>
+    <details>
+      <summary>Why does App Store Connect reject my upload?</summary>
+      <p>Almost always the wrong pixel dimensions, an alpha channel/transparency (screenshots must be flattened), an unsupported type like HEIC, or a non-RGB color profile. Export a flattened PNG at the exact size to clear all four.</p>
+    </details>
+    <details>
+      <summary>Can you put marketing text on screenshots?</summary>
+      <p>Yes, and it's encouraged. Keep any headline large and legible at thumbnail size, since most impressions happen in a small carousel.</p>
+    </details>
+  </div>
+
+  <section class="ctaband">
+    <h2>Ship the whole set in one pass.</h2>
+    <p>One config in, the pixel-exact App Store matrix out — framed, flattened, and ready to upload. Runs in your browser, nothing uploaded, free to try.</p>
+    <a class="ctabtn" href="../">Generate your screenshots →</a>
+  </section>
+
+  <footer>
+    <span>ShipShots · App Store screenshots from one config · <a href="../">open the generator</a></span>
+    <span>Steps reflect App Store Connect, Jul 2026 · verify current specs on <a href="https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/" rel="nofollow">Apple's docs</a></span>
+  </footer>
+</div>
+</body>
+</html>
