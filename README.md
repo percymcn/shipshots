@@ -1,15 +1,17 @@
-<p align="center">
-  <a href="https://percymcn.github.io/shipshots/">
-    <img src="./og.png" alt="ShipShots — App Store screenshots from one config, rendered in your browser" width="640">
-  </a>
-</p>
-
 <h1 align="center">ShipShots</h1>
 
 <p align="center">
   <b>App Store screenshots from one config — pixel-exact, rendered 100% in your browser. Free.</b><br>
   <a href="https://percymcn.github.io/shipshots/"><b>→ Open ShipShots</b></a>
 </p>
+
+<p align="center">
+  <a href="https://percymcn.github.io/shipshots/">
+    <img src="./showcase.png" alt="Three finished ShipShots outputs — iPhone 6.7 inch, 6.5 inch and iPad 12.9 inch App Store screenshots generated from one config" width="900">
+  </a>
+</p>
+
+<p align="center"><sub>Real output — one config renders all three exact App Store sizes (1290×2796 · 1242×2688 · 2048×2732), entirely in your browser.</sub></p>
 
 ---
 

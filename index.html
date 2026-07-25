@@ -106,6 +106,10 @@
   footer { margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   code.k { color: var(--lime); font-family: ui-monospace, monospace; }
   .priv { color: var(--muted); font-size: 12px; margin-top: 10px; }
+  .showcase { margin: 8px 0 4px; }
+  .showcase img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 16px; }
+  .showcase figcaption { color: var(--muted); font-size: 13px; text-align: center; margin-top: 12px; }
+  .showcase figcaption b { color: var(--fg); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -115,6 +119,11 @@
     <h1>Ship every App&nbsp;Store<br/><em>screenshot</em> from one file.</h1>
     <p class="sub">Edit one JSON config. Get pixel-exact PNGs for iPhone 6.7", 6.5" and iPad 12.9" — re-runnable every release. No design tool, no bezel licensing, no fiddling with canvas sizes. Renders entirely in your browser — nothing is uploaded.</p>
   </header>
+
+  <figure class="showcase">
+    <img src="showcase.png" alt="Three finished ShipShots outputs — iPhone 6.7&quot;, 6.5&quot; and iPad 12.9&quot; App Store screenshots generated from one config." loading="lazy" width="2000" height="1520" />
+    <figcaption>One config → the whole set. <b>Real output</b> at the exact App Store sizes — 1290×2796, 1242×2688, 2048×2732 — rendered in your browser below.</figcaption>
+  </figure>
 
   <div class="grid">
     <div class="card">
